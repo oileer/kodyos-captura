@@ -29,6 +29,7 @@ export default function CaptureForm() {
         criadoEm: serverTimestamp(),
         origem: "captura.eullerlolato.com",
       });
+      sessionStorage.setItem("kodyos_lead_ok", "1");
       router.push("/obrigado");
     } catch {
       setStatus("error");

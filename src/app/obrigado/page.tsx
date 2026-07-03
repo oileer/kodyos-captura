@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,6 +11,20 @@ const WHATSAPP_MSG = encodeURIComponent(
 );
 
 export default function Obrigado() {
+  const router = useRouter();
+  const [ok, setOk] = useState(false);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("kodyos_lead_ok") === "1") {
+      sessionStorage.removeItem("kodyos_lead_ok");
+      setOk(true);
+    } else {
+      router.replace("/");
+    }
+  }, [router]);
+
+  if (!ok) return null;
+
   return (
     <main
       style={{
@@ -77,7 +95,6 @@ export default function Obrigado() {
           Em breve você recebe as primeiras informações sobre o KODY OS. Enquanto isso, escolha um próximo passo:
         </p>
 
-        {/* Buttons */}
         <div
           className="anim-fade-up delay-4"
           style={{
