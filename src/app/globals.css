@@ -19,10 +19,55 @@ body {
   color: var(--bone);
   -webkit-font-smoothing: antialiased;
   line-height: 1.6;
+  /* Dot grid texture */
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
 input::placeholder { color: var(--muted-2); }
 input:focus { outline: none; }
+
+/* ── Hero section com imagem de fundo ── */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    url('/hero-bg.jpg') center right / cover no-repeat;
+  opacity: 0.2;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 100%);
+}
+
+.hero-section:hover::before {
+  opacity: 1;
+}
+
+.hero-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Noise grain overlay ── */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
 
 /* ── Keyframes ── */
 @keyframes fadeUp {
@@ -37,14 +82,10 @@ input:focus { outline: none; }
   from { width: 0; }
   to   { width: 48px; }
 }
-@keyframes pulse-border {
-  0%, 100% { border-color: rgba(255,69,0,0.4); }
-  50%       { border-color: rgba(255,69,0,1); }
-}
 
 /* ── Animation utilities ── */
-.anim-fade-up   { animation: fadeUp  0.6s ease both; }
-.anim-fade-in   { animation: fadeIn  0.5s ease both; }
+.anim-fade-up    { animation: fadeUp  0.6s ease both; }
+.anim-fade-in    { animation: fadeIn  0.5s ease both; }
 .anim-slide-right { animation: slideRight 0.8s ease both; }
 
 .delay-1 { animation-delay: 0.1s; }
@@ -55,7 +96,7 @@ input:focus { outline: none; }
 .delay-6 { animation-delay: 0.6s; }
 .delay-7 { animation-delay: 0.7s; }
 
-/* ── Benefit card hover ── */
+/* ── Hover states ── */
 .benefit-card {
   transition: border-color 0.2s, transform 0.2s;
 }
@@ -64,7 +105,6 @@ input:focus { outline: none; }
   transform: translateY(-2px);
 }
 
-/* ── Button hover ── */
 .btn-primary {
   transition: opacity 0.2s, transform 0.15s !important;
 }
@@ -73,12 +113,6 @@ input:focus { outline: none; }
   transform: translateY(-1px);
 }
 
-/* ── CTA card pulse on load ── */
-.form-card {
-  animation: fadeUp 0.7s 0.5s ease both;
-}
-
-/* ── Obrigado buttons ── */
 .cta-btn {
   transition: transform 0.15s, opacity 0.15s;
 }

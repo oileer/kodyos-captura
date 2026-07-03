@@ -21,7 +21,7 @@ export default function Home() {
         </div>
       </header>
 
-      <div style={{ maxWidth: 640, margin: "0 auto", padding: "56px 20px 80px" }}>
+      <div className="hero-section" style={{ maxWidth: 640, margin: "0 auto", padding: "56px 20px 80px" }}>
         {/* Eyebrow */}
         <div
           className="anim-fade-in"
