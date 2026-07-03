@@ -35,10 +35,12 @@ export default function Obrigado() {
           alt="KODY"
           width={80}
           height={28}
+          className="anim-fade-in"
           style={{ objectFit: "contain", marginBottom: 40 }}
         />
 
         <hr
+          className="anim-slide-right delay-1"
           style={{
             border: 0,
             height: 2,
@@ -50,6 +52,7 @@ export default function Obrigado() {
         />
 
         <h1
+          className="anim-fade-up delay-2"
           style={{
             fontFamily: "var(--font-audiowide)",
             fontSize: "clamp(22px, 6vw, 36px)",
@@ -62,6 +65,7 @@ export default function Obrigado() {
         </h1>
 
         <p
+          className="anim-fade-up delay-3"
           style={{
             fontSize: 15,
             color: "var(--muted)",
@@ -75,6 +79,7 @@ export default function Obrigado() {
 
         {/* Buttons */}
         <div
+          className="anim-fade-up delay-4"
           style={{
             display: "flex",
             flexDirection: "column",
@@ -86,6 +91,7 @@ export default function Obrigado() {
             href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_MSG}`}
             target="_blank"
             rel="noopener noreferrer"
+            className="cta-btn"
             style={{
               display: "block",
               background: "var(--orange)",
@@ -120,6 +126,7 @@ export default function Obrigado() {
             href="https://blog.eullerlolato.com"
             target="_blank"
             rel="noopener noreferrer"
+            className="cta-btn"
             style={{
               display: "block",
               background: "var(--bg-card)",

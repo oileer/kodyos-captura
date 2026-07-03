@@ -109,6 +109,7 @@ export default function CaptureForm() {
       <button
         type="submit"
         disabled={status === "loading"}
+        className="btn-primary"
         style={{
           background: status === "loading" ? "var(--muted-2)" : "var(--orange)",
           color: "#fff",

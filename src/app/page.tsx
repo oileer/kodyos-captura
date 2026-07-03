@@ -24,6 +24,7 @@ export default function Home() {
       <div style={{ maxWidth: 640, margin: "0 auto", padding: "56px 20px 80px" }}>
         {/* Eyebrow */}
         <div
+          className="anim-fade-in"
           style={{
             display: "flex",
             alignItems: "center",
@@ -41,10 +42,10 @@ export default function Home() {
         </div>
 
         <hr
+          className="anim-slide-right delay-1"
           style={{
             border: 0,
             height: 2,
-            width: 48,
             borderRadius: 2,
             background: "linear-gradient(90deg, #FF4500, rgba(255,69,0,0))",
             marginBottom: 24,
@@ -52,6 +53,7 @@ export default function Home() {
         />
 
         <h1
+          className="anim-fade-up delay-1"
           style={{
             fontFamily: "var(--font-audiowide)",
             fontSize: "clamp(28px, 8vw, 56px)",
@@ -65,6 +67,7 @@ export default function Home() {
         </h1>
 
         <p
+          className="anim-fade-up delay-2"
           style={{
             fontSize: "clamp(15px, 2.5vw, 17px)",
             color: "var(--muted)",
@@ -77,12 +80,13 @@ export default function Home() {
           atendimento e vendas — tudo funcionando junto, de forma automática.
         </p>
 
-        <p style={{ fontSize: 13, color: "var(--muted-2)", marginBottom: 40 }}>
+        <p className="anim-fade-up delay-3" style={{ fontSize: 13, color: "var(--muted-2)", marginBottom: 40 }}>
           Sistema em desenvolvimento. Cadastre-se para acesso antecipado.
         </p>
 
         {/* Benefits */}
         <div
+          className="anim-fade-up delay-4"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
@@ -98,6 +102,7 @@ export default function Home() {
           ].map((item) => (
             <div
               key={item}
+              className="benefit-card"
               style={{
                 background: "var(--bg-card)",
                 border: "1px solid var(--line)",
@@ -116,7 +121,9 @@ export default function Home() {
           ))}
         </div>
 
-        <CaptureForm />
+        <div className="anim-fade-up delay-5">
+          <CaptureForm />
+        </div>
 
         <p
           style={{
