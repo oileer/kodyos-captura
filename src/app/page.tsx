@@ -80,8 +80,9 @@ export default function Home() {
           atendimento e vendas — tudo funcionando junto, de forma automática.
         </p>
 
-        <p className="anim-fade-up delay-3" style={{ fontSize: 13, color: "var(--muted-2)", marginBottom: 40 }}>
-          Sistema em desenvolvimento. Cadastre-se para acesso antecipado.
+        <p className="anim-fade-up delay-3" style={{ fontSize: 14, color: "var(--muted)", marginBottom: 40, lineHeight: 1.7 }}>
+          Ao se cadastrar você <strong style={{ color: "var(--bone)" }}>garante seu lugar na lista de espera</strong> do KODY OS
+          e recebe acesso imediato aos artigos semanais sobre IA, produção de conteúdo e negócios digitais.
         </p>
 
         {/* Benefits */}
