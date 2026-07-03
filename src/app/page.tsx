@@ -1,26 +1,34 @@
+import Image from "next/image";
 import CaptureForm from "@/components/CaptureForm";
 
 export default function Home() {
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        background: "var(--bg)",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "80px 24px",
-      }}
-    >
-      <div style={{ maxWidth: 600, width: "100%", position: "relative", zIndex: 1 }}>
+    <main style={{ background: "var(--bg)", minHeight: "100vh" }}>
+      {/* Header */}
+      <header
+        style={{
+          borderBottom: "1px solid var(--line)",
+          padding: "16px 0",
+          position: "sticky",
+          top: 0,
+          background: "rgba(10,10,10,0.95)",
+          backdropFilter: "blur(12px)",
+          zIndex: 10,
+        }}
+      >
+        <div style={{ maxWidth: 640, margin: "0 auto", padding: "0 20px" }}>
+          <Image src="/kody-logo.png" alt="KODY" width={72} height={24} style={{ objectFit: "contain" }} />
+        </div>
+      </header>
+
+      <div style={{ maxWidth: 640, margin: "0 auto", padding: "56px 20px 80px" }}>
         {/* Eyebrow */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 14,
-            marginBottom: 28,
+            gap: 12,
+            marginBottom: 24,
             fontSize: 11,
             fontWeight: 600,
             letterSpacing: "0.28em",
@@ -32,27 +40,25 @@ export default function Home() {
           Acesso Antecipado
         </div>
 
-        {/* Accent line */}
         <hr
           style={{
             border: 0,
             height: 2,
-            width: 64,
+            width: 48,
             borderRadius: 2,
             background: "linear-gradient(90deg, #FF4500, rgba(255,69,0,0))",
-            marginBottom: 28,
+            marginBottom: 24,
           }}
         />
 
-        {/* Headline */}
         <h1
           style={{
             fontFamily: "var(--font-audiowide)",
-            fontSize: "clamp(32px, 7vw, 64px)",
+            fontSize: "clamp(28px, 8vw, 56px)",
             lineHeight: 1,
             letterSpacing: "0.02em",
             color: "var(--bone)",
-            marginBottom: 20,
+            marginBottom: 16,
           }}
         >
           KODY OS
@@ -60,18 +66,18 @@ export default function Home() {
 
         <p
           style={{
-            fontSize: "clamp(15px, 2vw, 18px)",
+            fontSize: "clamp(15px, 2.5vw, 17px)",
             color: "var(--muted)",
-            maxWidth: "54ch",
-            marginBottom: 12,
-            lineHeight: 1.7,
+            marginBottom: 10,
+            lineHeight: 1.75,
+            maxWidth: "52ch",
           }}
         >
-          Um sistema de IA que estrutura sua empresa do zero — redes sociais, conteúdo, atendimento e
-          vendas — tudo funcionando junto, de forma automática.
+          Um sistema de IA que estrutura sua empresa do zero — redes sociais, conteúdo,
+          atendimento e vendas — tudo funcionando junto, de forma automática.
         </p>
 
-        <p style={{ fontSize: 14, color: "var(--muted-2)", marginBottom: 56 }}>
+        <p style={{ fontSize: 13, color: "var(--muted-2)", marginBottom: 40 }}>
           Sistema em desenvolvimento. Cadastre-se para acesso antecipado.
         </p>
 
@@ -79,16 +85,16 @@ export default function Home() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
-            gap: 12,
-            marginBottom: 48,
+            gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
+            gap: 10,
+            marginBottom: 40,
           }}
         >
           {[
             "Perfil online estruturado",
-            "Produção de conteúdo com IA",
+            "Conteúdo com IA",
             "Automação de WhatsApp",
-            "Acesso vitalício antecipado",
+            "Acesso vitalício",
           ].map((item) => (
             <div
               key={item}
@@ -96,27 +102,25 @@ export default function Home() {
                 background: "var(--bg-card)",
                 border: "1px solid var(--line)",
                 borderRadius: 10,
-                padding: "14px 16px",
+                padding: "12px 14px",
                 fontSize: 13,
                 color: "var(--bone)",
                 display: "flex",
                 alignItems: "flex-start",
-                gap: 10,
+                gap: 8,
               }}
             >
-              <span style={{ color: "var(--orange)", fontWeight: 700, flexShrink: 0 }}>→</span>
+              <span style={{ color: "var(--orange)", flexShrink: 0 }}>→</span>
               {item}
             </div>
           ))}
         </div>
 
-        {/* Form */}
         <CaptureForm />
 
-        {/* Footer */}
         <p
           style={{
-            marginTop: 48,
+            marginTop: 40,
             fontSize: 11,
             color: "var(--muted-2)",
             textAlign: "center",

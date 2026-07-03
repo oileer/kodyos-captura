@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
@@ -12,12 +13,9 @@ function formatWhatsApp(value: string) {
 }
 
 export default function CaptureForm() {
+  const router = useRouter();
   const [form, setForm] = useState({ nome: "", email: "", whatsapp: "" });
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-
-  const handleWhatsApp = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm((f) => ({ ...f, whatsapp: formatWhatsApp(e.target.value) }));
-  };
+  const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,44 +27,13 @@ export default function CaptureForm() {
         email: form.email.trim().toLowerCase(),
         whatsapp: form.whatsapp.replace(/\D/g, ""),
         criadoEm: serverTimestamp(),
+        origem: "captura.eullerlolato.com",
       });
-      setStatus("success");
+      router.push("/obrigado");
     } catch {
       setStatus("error");
     }
   };
-
-  if (status === "success") {
-    return (
-      <div
-        style={{
-          background: "var(--bg-card)",
-          border: "1px solid var(--line)",
-          borderLeft: "2px solid var(--orange)",
-          borderRadius: 14,
-          padding: "40px 36px",
-          textAlign: "center",
-          maxWidth: 480,
-          margin: "0 auto",
-        }}
-      >
-        <div style={{ fontSize: 32, marginBottom: 16 }}>✓</div>
-        <p
-          style={{
-            fontFamily: "var(--font-audiowide)",
-            fontSize: 18,
-            color: "var(--bone)",
-            marginBottom: 10,
-          }}
-        >
-          Você está na lista.
-        </p>
-        <p style={{ color: "var(--muted)", fontSize: 14 }}>
-          Em breve entraremos em contato com as próximas etapas.
-        </p>
-      </div>
-    );
-  }
 
   const inputStyle: React.CSSProperties = {
     width: "100%",
@@ -84,7 +51,7 @@ export default function CaptureForm() {
     fontSize: 11,
     fontWeight: 600,
     letterSpacing: "0.2em",
-    textTransform: "uppercase",
+    textTransform: "uppercase" as const,
     color: "var(--muted-2)",
     marginBottom: 8,
   };
@@ -97,12 +64,10 @@ export default function CaptureForm() {
         border: "1px solid var(--line)",
         borderLeft: "2px solid var(--orange)",
         borderRadius: 14,
-        padding: "40px 36px",
-        maxWidth: 480,
-        margin: "0 auto",
+        padding: "clamp(24px, 5vw, 36px)",
         display: "flex",
         flexDirection: "column",
-        gap: 24,
+        gap: 20,
       }}
     >
       <div>
@@ -134,9 +99,9 @@ export default function CaptureForm() {
         <input
           style={inputStyle}
           type="tel"
-          placeholder="(47) 99999-9999"
+          placeholder="(49) 99999-9999"
           value={form.whatsapp}
-          onChange={handleWhatsApp}
+          onChange={(e) => setForm((f) => ({ ...f, whatsapp: formatWhatsApp(e.target.value) }))}
           required
         />
       </div>
@@ -150,12 +115,13 @@ export default function CaptureForm() {
           border: "none",
           borderRadius: 8,
           padding: "16px 0",
-          fontSize: 14,
-          fontWeight: 600,
+          fontSize: 13,
+          fontWeight: 700,
           fontFamily: "var(--font-audiowide)",
-          letterSpacing: "0.1em",
+          letterSpacing: "0.08em",
           cursor: status === "loading" ? "not-allowed" : "pointer",
           transition: "opacity 0.2s",
+          width: "100%",
         }}
       >
         {status === "loading" ? "Enviando..." : "GARANTIR ACESSO ANTECIPADO"}
@@ -168,7 +134,7 @@ export default function CaptureForm() {
       )}
 
       <p style={{ fontSize: 12, color: "var(--muted-2)", textAlign: "center" }}>
-        Sem spam. Seus dados são usados apenas para contato sobre o KODY OS.
+        Sem spam. Dados usados apenas para contato sobre o KODY OS.
       </p>
     </form>
   );
